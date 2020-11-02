@@ -1,5 +1,5 @@
 # Frank's List
-This is an online store meant for buying and selling used goods throughout the BOW (Babson, Olin, Wellesley) community.  
+This is an online store meant for buying and selling used goods throughout the BOW (Babson, Olin, Wellesley) community. Built by @jasperkatzban, @jellyyams, and @jonaskaz using Flask, Bootstrap, and Firebase.
     
 [Click here for more details about our project](https://sd2020spring.github.io/DepthProject-kelly-jasper-jonas/)
 
