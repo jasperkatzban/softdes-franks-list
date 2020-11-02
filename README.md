@@ -1,7 +1,7 @@
 # Frank's List
-This is an online store meant for buying and selling used goods throughout the BOW (Babson, Olin, Wellesley) community. Built by @jasperkatzban, @jellyyams, and @jonaskaz using Flask, Bootstrap, and Firebase.
+This is an online store meant for buying and selling used goods throughout the BOW (Babson, Olin, Wellesley) community. Built by [@jasperkatzban](https://github.com/jasperkatzban/), [@jellyyams](https://github.com/jellyyams/), and [@jonaskaz](https://github.com/jonaskaz) using Flask, Bootstrap, and Firebase.
     
-[Click here for more details about our project](https://sd2020spring.github.io/DepthProject-kelly-jasper-jonas/)
+[Click here for the full project writeup.](https://sd2020spring.github.io/DepthProject-kelly-jasper-jonas/)
 
 # Getting Started  
 Make sure the following packages are installed:  
