@@ -1,0 +1,84 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container mx-auto" style="width: 400px; align:center">
+    <div class="row mt-5 mb-4">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-auto">
+                <a href="/selling" type="button" class="btn btn-sm btn-outline-primary">Back</a>
+            </div>
+            <div class="col-auto align-self-center">
+                <h1 class="h1 text-right">Edit Listing</h1>
+            </div>
+        </div>
+    </div>
+    <h5 class="h5 text-center mb-4">Update your item info below.</h5>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form class="mt-4" style="max-width: 500px" action="/edititem/{{itemid}}" method="POST" enctype='multipart/form-data'>
+        <label for="name">Item name</label><br>
+        <input type="text" id="name" name="name" class="form-control" value="{{item['name']}}" required><br>
+        <label for="description">Description</label><br>
+        <textarea type="text" id="description" name="description" class="form-control" value="{{item['description']}}" required>{{item['description']}}</textarea><br>
+        <label for="price">Price ($)</label><br>
+        <input type="number" id="price" name="price" class="form-control" value="{{item['price']}}" required><br>
+        <label for="category">Choose a category:</label>
+        <select id="category" name="category">
+            {% for category in categories %}
+                {% if category == item['category'] %}
+                <option value="{{category}}" selected="selected">{{category}}</option>
+                {% else %}
+                    <option value="{{category}}">{{category}}</option>
+                {% endif %}     
+            {% endfor %}
+        </select> 
+        <p>Quality</p>
+        <div class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" id="new" name="quality" value="new" {{ 'checked="checked"' if item['quality'] == 'new' else "" }}>
+            <label class="custom-control-label" for="new">
+                Brand new
+            </label><br>
+        </div>  
+        <div class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" id="lused" name="quality" value="lused"  {{ 'checked="checked"' if item['quality'] == 'lused' else "" }}>
+            <label class="custom-control-label" for="lused">
+                Lightly used
+            </label><br>
+        </div>  
+        <div class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" id="used" name="quality" value="used"  {{ 'checked="checked"' if item['quality'] == 'used' else "" }}>
+            <label class="custom-control-label" for="used">
+                Used
+            </label><br>
+        </div>
+        <div class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" id="hused" name="quality" value="hused"  {{ 'checked="checked"' if item['quality'] == 'hused' else "" }}>
+            <label class="custom-control-label" for="hused">
+                Heavily used
+            </label><br>
+        </div>
+        <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" id="fix" name="quality" value="fix"  {{ 'checked="checked"' if item['quality'] == 'fix' else "" }}>
+                <label class="custom-control-label"for="fix">
+                Repairs necessary
+            </label><br>
+        </div><br>
+        <p>
+            {% for image in images %}
+                <img class="img-fluid " src="{{image}}" alt="Item image">
+            {% endfor %}
+        </p>
+
+        <label for="picture">Re submit Images</label><br>
+        <input type="file" id="picture" name="picture" multiple = 'true'><br><br>
+        <button class="btn btn-lg btn-primary btn-block mt-3" type="submit" id="sub" name="sub">Update Item</button><br> 
+    </form>
+</div>         
+{% endblock %}

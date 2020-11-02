@@ -1,0 +1,69 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container mx-auto" style="width: 400px; align:center">
+    <div class="row mt-5 mb-4">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-auto">
+                <a href="#" onclick="history.go(-1)" type="button" class="btn btn-sm btn-outline-primary">Back</a>
+            </div>
+            <div class="col-auto align-self-center">
+                <h1 class="h1 text-right">List an Item!</h1>
+            </div>
+        </div>
+    </div>
+        <h5 class="h5 text-center mb-4">Add some details and images about your item so people can see what you're selling!</h5>
+    <form class="mt-4" style="max-width: 500px" action="/validatelisting" method="POST" enctype='multipart/form-data'>
+        <label for="name">Item name</label><br>
+        <input type="text" id="name" name="name" class="form-control" placeholder="Beach Ball" required="true"><br>
+        <label for="description">Description</label><br>
+        <textarea type="text" id="description" name="description" class="form-control" placeholder="Fun to throw around with friends!" required="true"></textarea><br>
+        <label for="price">Price</label><br>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input type="number" id="price" name="price" class="form-control" placeholder="5.00" required="true">
+        </div><br>
+        <label for="category">Choose a category:</label>
+        <select id="category" name="category" class="form-control">
+            {% for category in categories %}
+                <option value="{{category}}">{{category}}</option>
+            {% endfor %}
+        </select><br>
+        <p>Quality</p>
+        <div class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" id="new" name="quality" value="new">
+            <label class="custom-control-label" for="new">
+                Brand new
+            </label><br>
+        </div>  
+        <div class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" id="lused" name="quality" value="lused">
+            <label class="custom-control-label" for="lused">
+                Lightly used
+            </label><br>
+        </div>  
+        <div class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" id="used" name="quality" value="used">
+            <label class="custom-control-label" for="used">
+                Used
+            </label><br>
+        </div>
+        <div class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" id="hused" name="quality" value="hused">
+            <label class="custom-control-label" for="hused">
+                Heavily used
+            </label><br>
+        </div>
+        <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" id="fix" name="quality" value="fix">
+                <label class="custom-control-label"for="fix">
+                Repairs necessary
+            </label><br>
+        </div><br>
+        <label for="picture">Picture</label><br>
+        <input type="file" id="picture" name="picture" multiple = 'true'><br><br>
+        <button class="btn btn-lg btn-success btn-block mt-3" type="submit" id="sub" name="sub">List Item</button><br> 
+    </form>
+</div>         
+{% endblock %}

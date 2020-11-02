@@ -1,0 +1,49 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container mt-4">
+	<a href="/userhome" type="button" class="btn btn-outline-primary mb-3">Back to Browse</a>
+	<h1 class="h1 mb-3">Selling</h1>
+	{% if user_selling_list %}
+		<table class="table table-hover table-responsive-md table-striped" style="width:100%">
+			<thead class="thead-gray">
+			    <tr>
+			    	<th>Item Name</th>
+			    	<th></th>
+			        <th>Category</th>
+			        <th>Date Posted</th>
+			        <th>Description</th>
+			        <th>Price</th>
+			        <th class="text-center">Active</th>
+			    <tr>
+			</thead>
+			<tbody>
+			{% for item in user_selling_list %}
+			  <tr>
+			  	<td class="align-middle text-nowrap"><strong>{{item['name']|title}}</strong></td>
+			  	<td class="align-middle text-nowrap">
+			  		<a href="/item/{{ item['id'] }}" role="button" class="btn btn-outline-secondary btn-sm m-1">View</a>
+		    		<a href="/edititem/{{ item['id'] }}" role="button" class="btn btn-outline-primary btn-sm m-1">Edit</a>
+		    	</td>
+			    <td class="align-middle">
+			    	<span class="badge badge-info text-nowrap">{{item['category']}}</span>
+			    </td>
+			    <td class="align-middle text-nowrap">{{item['post_date'].strftime('%m-%d-%y')}}</td>
+			    <td class="align-middle">{{item['description'][0]|upper}}{{item['description'][1:]}}</td>
+			    <td class="align-middle text-nowrap">${{item['price']}}</td>
+			    <td class="class= align-middle text-center">
+			        <form action='/selling' method='POST'>
+		                <input type="hidden"  name="itemid" value="{{item['id']}}">
+		                <input type="hidden"  name="item_cat" value="{{item['category']}}">
+		                <button class="btn btn-link btn-sm"  type="submit" value='Saved'>&#x2705;</button>
+			        </form>
+			    </td>
+			  </tr>    
+			{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+	<h5 class="mt-3">Items you've listed or sold will show up here.</h5>
+	{% endif %}
+</div>
+
+{% endblock %}
